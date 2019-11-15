@@ -1,0 +1,20 @@
+model {
+
+  #Likelihood
+  for (i in 1:N) {
+  
+  	y[i] ~ dnegbin(p[i],r)
+  	eta[i] <- alpha + beta*x[i]
+  	p[i] <- 1/(1 + exp(eta[i]))
+  	
+  }
+  
+  #Priors 
+  alpha ~ dnorm(0, 0.001)
+  beta  ~ dnorm(0, 0.001)
+  
+  r <- 10
+
+} 
+
+
